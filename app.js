@@ -6,7 +6,11 @@ import sportRoute from "./routes/sportRoute.js";
 import spectacleRoute from "./routes/spectacleRoute.js";
 import cinemaRoute from "./routes/cinemaRoute.js";
 import theatreRoute from "./routes/theatreRoute.js";
+
+import humourRoute from "./routes/humourRoute.js";
+
 import concertRoute from "./routes/concertRoute.js";
+
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -26,11 +30,16 @@ app.use("/cinema", cinemaRoute);
 //route principale pour la page théâtre
 app.use("/theatre", theatreRoute);
 
+
+//route principale pour les spectacles d'humour
+app.use("/humour", humourRoute);
+
 app.use("/sport", sportRoute);
 app.use("/spectacle", spectacleRoute);
 
 // ********* Concert *********
 app.use("/concert", concertRoute);
+
 
 
 // Démarrer le serveur
