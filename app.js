@@ -2,6 +2,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/database.js"; // ← Import de ta fonction
+import sportRoute from "./routes/sportRoute.js";
+
+
+
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -14,6 +18,8 @@ app.use(express.json());
 
 // Connexion à MongoDB
 connectDB(); // ← Appel de ta fonction
+
+app.use("/sport", sportRoute);
 
 // ********* Concert *********
 import concertRoute from "./routes/concertRoute.js";
