@@ -10,6 +10,7 @@ import theatreRoute from "./routes/theatreRoute.js";
 import humourRoute from "./routes/humourRoute.js";
 
 import concertRoute from "./routes/concertRoute.js";
+import festivalRoute from "./routes/festivalRoute.js";
 
 
 // Charger les variables d'environnement
@@ -37,10 +38,9 @@ app.use("/humour", humourRoute);
 app.use("/sport", sportRoute);
 app.use("/spectacle", spectacleRoute);
 
-// ********* Concert *********
+
 app.use("/concert", concertRoute);
-
-
+app.use("/festival", festivalRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {

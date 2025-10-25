@@ -1,6 +1,6 @@
 import Concert, {
     addConcert,
-    findConcertById,
+    deleteConcertById,
     findConcertByIdAndUpdate,
 } from "../models/concert.js";
 
@@ -47,14 +47,17 @@ export async function addConcertController(req, res) {
 //********** Delete Concert ************//
 export async function deleteConcertController(req, res) {
     try {
-        const deletedConcert = await findConcertById(req.params.id);
+        const deletedConcert = await deleteConcertById(req.params.id);
         if (!deletedConcert) {
             return res.status(400).json({ message: "Concert not found" });
         }
 
         return res
             .status(200)
-            .json({ message: "Concert successfully deleted" });
+            .json({
+                message: "Concert successfully deleted",
+                concert: deletedConcert,
+            });
     } catch (error) {
         return res.status(500).json({
             message: "Sever error",
