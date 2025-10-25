@@ -15,7 +15,11 @@ app.use(express.json());
 // Connexion à MongoDB
 connectDB(); // ← Appel de ta fonction
 
+// ********* Concert *********
+import concertRoute from "./routes/concertRoute.js";
+app.use("/concert", concertRoute);
+
 // Démarrer le serveur
 app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
+    console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
