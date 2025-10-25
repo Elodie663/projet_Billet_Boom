@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/database.js"; // ← Import de ta fonction
 import sportRoute from "./routes/sportRoute.js";
+import spectacleRoute from "./routes/spectacleRoute.js";
 
 
 
@@ -20,6 +21,7 @@ app.use(express.json());
 connectDB(); // ← Appel de ta fonction
 
 app.use("/sport", sportRoute);
+app.use("/spectacle", spectacleRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
