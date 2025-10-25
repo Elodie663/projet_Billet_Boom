@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import { connectDB } from "./config/database.js";
 import cinemaRoute from "./routes/cinemaRoute.js";
 import theatreRoute from "./routes/theatreRoute.js";
+import humourRoute from "./routes/humourRoute.js";
+
 // Charger les variables d'environnement
 dotenv.config();
 
@@ -20,6 +22,9 @@ app.use("/cinema", cinemaRoute);
 
 //route principale pour la page théâtre
 app.use("/theatre", theatreRoute);
+
+//route principale pour les spectacles d'humour
+app.use("/humour", humourRoute);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
