@@ -39,6 +39,9 @@ export async function findConcertById(id) {
     return await Concert.findById(id);
 }
 
+export async function deleteConcertById(id) {
+    return await Concert.findByIdAndDelete(id);
+}
 export async function findConcertByIdAndUpdate(id, updateData) {
     return await Concert.findByIdAndUpdate(id, updateData);
 }

@@ -19,6 +19,10 @@ connectDB(); // ← Appel de ta fonction
 import concertRoute from "./routes/concertRoute.js";
 app.use("/concert", concertRoute);
 
+// ********* Festival *********
+import festivalRoute from "./routes/festivalRoute.js";
+app.use("/festival", festivalRoute);
+
 // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur http://localhost:${PORT}`);
