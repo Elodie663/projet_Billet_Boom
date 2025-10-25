@@ -1,6 +1,10 @@
 // app.js
 import express from "express";
 import dotenv from "dotenv";
+import { connectDB } from "./config/database.js"; // ← Import de ta fonction
+import sportRoute from "./routes/sportRoute.js";
+import spectacleRoute from "./routes/spectacleRoute.js";
+
 
 import { connectDB } from "./config/database.js";
 import cinemaRoute from "./routes/cinemaRoute.js";
@@ -24,6 +28,7 @@ connectDB(); //
 app.use("/cinema", cinemaRoute);
 
 app.use("/sport", sportRoute);
+app.use("/spectacle", spectacleRoute);
 
 // ********* Concert *********
 import concertRoute from "./routes/concertRoute.js";
