@@ -1,9 +1,11 @@
 // app.js
 import express from "express";
 import dotenv from "dotenv";
-import { connectDB } from "./config/database.js"; // ← Import de ta fonction
-import sportRoute from "./routes/sportRoute.js";
 
+import { connectDB } from "./config/database.js";
+import cinemaRoute from "./routes/cinemaRoute.js";
+
+import sportRoute from "./routes/sportRoute.js";
 
 
 
@@ -13,11 +15,13 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 
 // Connexion à MongoDB
-connectDB(); // ← Appel de ta fonction
+connectDB(); //
+
+//route principale pour la page cinema
+app.use("/cinema", cinemaRoute);
 
 app.use("/sport", sportRoute);
 
