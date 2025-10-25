@@ -6,6 +6,11 @@ import sportRoute from "./routes/sportRoute.js";
 import spectacleRoute from "./routes/spectacleRoute.js";
 
 
+import { connectDB } from "./config/database.js";
+import cinemaRoute from "./routes/cinemaRoute.js";
+
+import sportRoute from "./routes/sportRoute.js";
+
 
 
 // Charger les variables d'environnement
@@ -14,16 +19,22 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware
 app.use(express.json());
 
 // Connexion à MongoDB
-connectDB(); // ← Appel de ta fonction
+connectDB(); //
+
+//route principale pour la page cinema
+app.use("/cinema", cinemaRoute);
 
 app.use("/sport", sportRoute);
 app.use("/spectacle", spectacleRoute);
 
+// ********* Concert *********
+import concertRoute from "./routes/concertRoute.js";
+app.use("/concert", concertRoute);
+
 // Démarrer le serveur
 app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
+    console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
