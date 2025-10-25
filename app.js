@@ -1,8 +1,14 @@
 // app.js
 import express from "express";
 import dotenv from "dotenv";
+
 import { connectDB } from "./config/database.js";
 import cinemaRoute from "./routes/cinemaRoute.js";
+
+import sportRoute from "./routes/sportRoute.js";
+
+
+
 // Charger les variables d'environnement
 dotenv.config();
 
@@ -17,7 +23,13 @@ connectDB(); //
 //route principale pour la page cinema
 app.use("/cinema", cinemaRoute);
 
+app.use("/sport", sportRoute);
+
+// ********* Concert *********
+import concertRoute from "./routes/concertRoute.js";
+app.use("/concert", concertRoute);
+
 // Démarrer le serveur
 app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
+    console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
