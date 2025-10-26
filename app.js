@@ -9,8 +9,13 @@ import theatreRoute from "./routes/theatreRoute.js";
 
 import humourRoute from "./routes/humourRoute.js";
 
+import authRoute from "./routes/authRoute.js";
+import usersRoute from "./routes/usersRoute.js";
+
+
 import concertRoute from "./routes/concertRoute.js";
 import festivalRoute from "./routes/festivalRoute.js";
+
 
 
 // Charger les variables d'environnement
@@ -35,6 +40,13 @@ app.use("/theatre", theatreRoute);
 //route principale pour les spectacles d'humour
 app.use("/humour", humourRoute);
 
+
+// route vers les services register et login
+app.use("/auth", authRoute);
+
+//route principale vers le user
+app.use("/users", usersRoute);
+
 app.use("/sport", sportRoute);
 app.use("/spectacle", spectacleRoute);
 
@@ -42,8 +54,7 @@ app.use("/spectacle", spectacleRoute);
 app.use("/concert", concertRoute);
 app.use("/festival", festivalRoute);
 
-import registerRoute from "./routes/registerRoute.js";
-app.use("/register", registerRoute);
+
 // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur http://localhost:${PORT}`);
