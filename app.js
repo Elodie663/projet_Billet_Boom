@@ -42,6 +42,8 @@ app.use("/spectacle", spectacleRoute);
 app.use("/concert", concertRoute);
 app.use("/festival", festivalRoute);
 
+import registerRoute from "./routes/registerRoute.js";
+app.use("/register", registerRoute);
 // Démarrer le serveur
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur http://localhost:${PORT}`);
