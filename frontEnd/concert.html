@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Concert</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="accueil.html">Accueil</a></li>
+                    <li><a href="cinema.html">Cinema</a></li>
+                    <li><a href="concert.html">Concert</a></li>
+                    <li><a href="festival.html">Festival</a></li>
+                    <li><a href="humours.html">Humours</a></li>
+                    <li><a href="spectacles.html">Spectacle</a></li>
+                    <li><a href="sport.html">Sport</a></li>
+                    <li><a href="theatre.html">Theatre</a></li>
+                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="sinscrire.html">S'inscrire</a></li>
+                    <li><a href="deconnexion.html">Deconnexion</a></li>
+                </ul>
+            </nav>
+        </header>
+        <h2 class="text-center text-primary fw-bold mb-3 p-3">Les concerts</h2>
+
+        <ul id="listeConcert" class="list-group"></ul>
+
+        <footer class="footer">
+            <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
+        </footer>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", async () => {
+                const liste = document.getElementById("listeConcert");
+                try {
+                    const reponse = await fetch(
+                        "http://localhost:3000/concert"
+                    );
+                    const concerts = await reponse.json();
+
+                    concerts.forEach((concert) => {
+                        const concertItem = document.createElement("li");
+
+                        concertItem.className =
+                            "list-group-item mb-3 p-3 border rounded shadow-sm";
+
+                        //titre
+                        const title = document.createElement("h3");
+                        title.textContent = concert.title;
+                        concertItem.appendChild(title);
+
+                        // description
+                        const desc = document.createElement("p");
+                        desc.textContent = `Description : ${concert.description}`;
+                        concertItem.appendChild(desc);
+
+                        // lieu
+                        const lieu = document.createElement("p");
+                        lieu.textContent = `Lieu : ${concert.place}`;
+                        concertItem.appendChild(lieu);
+
+                        // duree
+                        const duration = document.createElement("p");
+                        duration.textContent = `Durée : ${concert.duration}`;
+                        concertItem.appendChild(duration);
+
+                        // prix
+                        const price = document.createElement("p");
+                        price.textContent = `Prix : ${concert.price} €`;
+                        concertItem.appendChild(price);
+
+                        // btn achat
+                        const boutton = document.createElement("button");
+                        boutton.textContent = "Acheter un billet";
+                        boutton.addEventListener("click", () => {
+                            alert(
+                                `Felicitation! Vous avez acheté un billet pour : ${concert.title} `
+                            );
+                        });
+                        concertItem.appendChild(boutton);
+
+                        liste.appendChild(concertItem);
+                    });
+                } catch (error) {
+                    cpncertItem.textContent = "Erreur : " + error.message;
+                }
+            });
+        </script>
+    </body>
+</html>
