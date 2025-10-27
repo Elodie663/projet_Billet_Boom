@@ -44,11 +44,24 @@
           const response = await fetch("http://localhost:3000/cinema");
           const spectacles = await response.json();
 
+          //mapping pour insérer des images
+          const imagesSpectacles = {
+            Kaamelott: "../frontEnd/images_cinema/Kaamelott.jpg",
+            Sirat: "../frontEnd/images_cinema/Sirat.jpg",
+            Conjuring: "../frontEnd/images_cinema/Conjuring.jpg",
+          };
+
           //boucle foreach pour récupérer les sécances ciné
           spectacles.forEach((spectacle) => {
             //card bootstrap
             const card = document.createElement("div");
             card.className = "card col-md-4 mb-3";
+
+            // créer l'image selon le titre
+            const img = document.createElement("img");
+            img.src = imagesSpectacles[spectacle.title];
+            img.alt = spectacle.title;
+            img.className = "card-img-top";
 
             //body de la card
             const cardBody = document.createElement("div");
@@ -79,8 +92,11 @@
             });
 
             //et ne pas OUBLIER d'assembler avec appenchild
+            card.appendChild(img);
             card.appendChild(cardBody);
+
             container.appendChild(card);
+
             cardBody.appendChild(button);
           });
         } catch (error) {
