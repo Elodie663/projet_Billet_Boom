@@ -11,7 +11,7 @@ const sportSchema = new mongoose.Schema(
     },
 );
 
-export const Sport = mongoose.model("sport", sportSchema);
+export const Sport = mongoose.model("Sport", sportSchema);
 
 //|||||||||||||||||||||||GETALL||||||||||||||||||||||||-
 export async function getAllSports(title){
@@ -29,7 +29,7 @@ export async function addSport(title, description, date, price, place, duration)
 //|||||||||||||||||||||||DELETE||||||||||||||||||||||||-
 
 export async function deleteSportById(id) {
-    const result = await Sport.deleteOne({id});
+    const result = await Sport.findByIdAndDelete(id);
     return result;
 }
 
@@ -43,6 +43,6 @@ export async function updateSportById(id, data){
 //|||||||||||||||||||||||||GETONE|||||||||||||||||||||||||
 
 export async function getOneById(id){
-    const sport = await Sport.findById({id});
+    const sport = await Sport.findById(id);
     return sport;
 }
