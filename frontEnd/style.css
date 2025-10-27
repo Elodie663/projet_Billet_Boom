@@ -1,55 +1,122 @@
 body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
 
 /* Pour que le footer soit poussé en bas */
 body > *:not(footer) {
-  flex: 0 0 auto;
+    flex: 0 0 auto;
 }
 
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
-  padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
+    padding: 10px;
+    align-items: center;
 }
 
 .navbar ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .navbar li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 12px;
-  transition: 0.3s;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    transition: 0.3s;
 }
 
 .navbar li a:hover {
-  background-color: #eb12ef;
-  border-radius: 5px;
+    background-color: #eb12ef;
+    border-radius: 5px;
 }
+/* .navLinks {
+    display: flex;
+    flex-wrap: wrap; */
+/* } */
 .footer {
-  background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
-  color: #eee;
-  text-align: center;
-  padding: 20px 0;
-  /* margin-top: 40px; */
-  margin-top: auto;
+    background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
+    color: #eee;
+    text-align: center;
+    padding: 20px 0;
+    /* margin-top: 40px; */
+    margin-top: auto;
 }
 
 .footer a {
-  color: #ccc;
-  text-decoration: none;
-  margin: 0 10px;
+    color: #ccc;
+    text-decoration: none;
+    margin: 0 10px;
 }
 
 .footer a:hover {
-  color: #fff;
+    color: #fff;
+}
+
+.photos {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.listEvent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 50px;
+    gap: 20px;
+}
+
+.listEvent a {
+    display: inline-block;
+    border-radius: 10px;
+    transition: 0.5s ease;
+    background-color: black;
+    box-shadow: 0 0 10px 10px rgba(17, 17, 17, 0.4);
+}
+.listEvent a:hover {
+    transform: scale(1.05);
+    transition: 0.5s ease;
+    box-shadow: 0 0 20px 20px rgba(176, 72, 177, 0.4);
+}
+
+.cinema,
+.concert,
+.festival,
+.humour,
+.spectacle,
+.sport,
+.theatre {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.titleList {
+    font-family: "Segoe UI", sans-serif;
+    color: whitesmoke;
+    background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
+    border-radius: 12px;
+}
+
+.top {
+    font-family: "Segoe UI", sans-serif;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: linear-gradient(120deg, rgb(213, 7, 120), rgb(126, 90, 180));
+    border-radius: 0 0 40px 40px;
+}
+.top h2 {
+    margin: 0;
+}
+.top p {
+    font-size: 1.2rem;
 }

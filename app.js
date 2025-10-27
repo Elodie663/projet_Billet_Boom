@@ -8,18 +8,14 @@ import sportRoute from "./routes/sportRoute.js";
 import spectacleRoute from "./routes/spectacleRoute.js";
 import cinemaRoute from "./routes/cinemaRoute.js";
 import theatreRoute from "./routes/theatreRoute.js";
-
 import humourRoute from "./routes/humourRoute.js";
-
 import authRoute from "./routes/authRoute.js";
 import usersRoute from "./routes/usersRoute.js";
-
 import concertRoute from "./routes/concertRoute.js";
 import festivalRoute from "./routes/festivalRoute.js";
 
 // Charger les variables d'environnement
 dotenv.config();
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
