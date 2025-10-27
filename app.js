@@ -26,8 +26,12 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
+app.use(express.static("frontEnd"));
+
+
+
 // Connexion à MongoDB
-connectDB(); //
+await connectDB(); //
 
 //route principale pour la page cinema
 app.use("/cinema", cinemaRoute);
@@ -51,6 +55,6 @@ app.use("/concert", concertRoute);
 app.use("/festival", festivalRoute);
 
 // Démarrer le serveur
-app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log(`ZZZZServeur lancé sur http://localhost:${PORT}`);
 });
