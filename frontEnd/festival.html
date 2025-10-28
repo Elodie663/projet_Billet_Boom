@@ -1,92 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Liste des festivals</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="cinema.html">Cinema</a></li>
-                    <li><a href="concert.html">Concert</a></li>
-                    <li><a href="festival.html">Festival</a></li>
-                    <li><a href="humour.html">Humours</a></li>
-                    <li><a href="spectacles.html">Spectacle</a></li>
-                    <li><a href="sport.html">Sport</a></li>
-                    <li><a href="theatre.html">Theatre</a></li>
-                    <li><a href="connexion.html">Connexion</a></li>
-                    <li><a href="register.html">S'inscrire</a></li>
-                    <li><a href="deconnexion.html">Deconnexion</a></li>
-                </ul>
-            </nav>
-        </header>
-        <h2 class="text-center text-primary fw-bold mb-3 p-3">Festivals</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Liste des festivals</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="cinema.html">Cinema</a></li>
+          <li><a href="concert.html">Concert</a></li>
+          <li><a href="festival.html">Festival</a></li>
+          <li><a href="humour.html">Humours</a></li>
+          <li><a href="spectacle.html">Spectacle</a></li>
+          <li><a href="sport.html">Sport</a></li>
+          <li><a href="theatre.html">Theatre</a></li>
+          <li><a href="connexion.html">Connexion</a></li>
+          <li><a href="register.html">S'inscrire</a></li>
+          <li><a href="deconnexion.html">Deconnexion</a></li>
+        </ul>
+      </nav>
+    </header>
+    <h2 class="text-center text-primary fw-bold mb-3 p-3">Festivals</h2>
 
-        <!-- liste vide pour les festivals -->
-        <ul id="listeFestivals" class="list-group"></ul>
+    <!-- liste vide pour les festivals -->
+    <ul id="listeFestivals" class="list-group"></ul>
 
-        <footer class="footer">
-            <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
-        </footer>
-        <script>
-            document.addEventListener("DOMContentLoaded", async () => {
-                console.log("ok");
+    <footer class="footer">
+      <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", async () => {
+        console.log("ok");
 
-                const liste = document.getElementById("listeFestivals");
+        const liste = document.getElementById("listeFestivals");
 
-                const reponse = await fetch("http://localhost:3000/festival"); //on demande les donnes l'API
-                const festivals = await reponse.json(); //on transforme la reponse en format json
+        const reponse = await fetch("http://localhost:3000/festival"); //on demande les donnes l'API
+        const festivals = await reponse.json(); //on transforme la reponse en format json
 
-                festivals.forEach((festival) => {
-                    const festivalItem = document.createElement("li"); //cree un element pour recuperer la liste
+        festivals.forEach((festival) => {
+          const festivalItem = document.createElement("li"); //cree un element pour recuperer la liste
 
-                    festivalItem.className =
-                        "list-group-item mb-3 p-3 border rounded shadow-sm";
-                    // titre
-                    const titre = document.createElement("h3");
-                    titre.textContent = festival.title;
-                    festivalItem.appendChild(titre);
+          festivalItem.className =
+            "list-group-item mb-3 p-3 border rounded shadow-sm";
+          // titre
+          const titre = document.createElement("h3");
+          titre.textContent = festival.title;
+          festivalItem.appendChild(titre);
 
-                    // description
-                    const desc = document.createElement("p");
-                    desc.textContent = `Description : ${festival.description}`;
-                    festivalItem.appendChild(desc);
+          // description
+          const desc = document.createElement("p");
+          desc.textContent = `Description : ${festival.description}`;
+          festivalItem.appendChild(desc);
 
-                    // lieu
-                    const lieu = document.createElement("p");
-                    lieu.textContent = `Lieu : ${festival.place}`;
-                    festivalItem.appendChild(lieu);
+          // lieu
+          const lieu = document.createElement("p");
+          lieu.textContent = `Lieu : ${festival.place}`;
+          festivalItem.appendChild(lieu);
 
-                    // duree
-                    const duration = document.createElement("p");
-                    duration.textContent = `Durée : ${festival.duration}`;
-                    festivalItem.appendChild(duration);
+          // duree
+          const duration = document.createElement("p");
+          duration.textContent = `Durée : ${festival.duration}`;
+          festivalItem.appendChild(duration);
 
-                    // prix
-                    const price = document.createElement("p");
-                    price.textContent = `Prix : ${festival.price} €`;
-                    festivalItem.appendChild(price);
+          // prix
+          const price = document.createElement("p");
+          price.textContent = `Prix : ${festival.price} €`;
+          festivalItem.appendChild(price);
 
-                    // btn achat
-                    const boutton = document.createElement("button");
-                    boutton.textContent = "Acheter un billet";
-                    boutton.addEventListener("click", () => {
-                        alert(
-                            `Felicitation! Vous avez acheté un billet pour : ${festival.title} `
-                        );
-                    });
-                    festivalItem.appendChild(boutton);
+          // btn achat
+          const boutton = document.createElement("button");
+          boutton.textContent = "Acheter un billet";
+          boutton.addEventListener("click", () => {
+            alert(
+              `Felicitation! Vous avez acheté un billet pour : ${festival.title} `
+            );
+          });
+          festivalItem.appendChild(boutton);
 
-                    liste.appendChild(festivalItem); // on ajoute le festival à la liste <ul>
-                });
-            });
-        </script>
-    </body>
+          liste.appendChild(festivalItem); // on ajoute le festival à la liste <ul>
+        });
+      });
+
+      //pouir afficher le nom de l'utilisateur connecté
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        const li = document.createElement("li");
+        li.style.color = "white";
+        li.textContent = user.name;
+        document.querySelector("nav ul").appendChild(li);
+      }
+    </script>
+  </body>
 </html>

@@ -24,8 +24,6 @@ app.use(express.json());
 
 app.use(express.static("frontEnd"));
 
-
-
 // Connexion à MongoDB
 await connectDB(); //
 
@@ -52,5 +50,5 @@ app.use("/festival", festivalRoute);
 
 // Démarrer le serveur
 app.listen(3000, () => {
-  console.log(`ZZZZServeur lancé sur http://localhost:${PORT}`);
+  console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });

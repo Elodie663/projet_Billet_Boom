@@ -1,99 +1,107 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Humour - Billet Boom</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <header>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="index.html">Accueil</a></li>
-                    <li><a href="cinema.html">Cinéma</a></li>
-                    <li><a href="concert.html">Concert</a></li>
-                    <li><a href="festival.html">Festival</a></li>
-                    <li><a href="humour.html">Humour</a></li>
-                    <li><a href="spectacles.html">Spectacle</a></li>
-                    <li><a href="sport.html">Sport</a></li>
-                    <li><a href="theatre.html">Theatre</a></li>
-                    <li><a href="connexion.html">Connexion</a></li>
-                    <li><a href="sinscrire.html">S'inscrire</a></li>
-                    <li><a href="deconnexion.html">Deconnexion</a></li>
-                </ul>
-            </nav>
-        </header>
-        <div class="container my-5">
-            <h1>Humour</h1>
-            <div id="spectacles" class="row"></div>
-        </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Humour - Billet Boom</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="cinema.html">Cinéma</a></li>
+          <li><a href="concert.html">Concert</a></li>
+          <li><a href="festival.html">Festival</a></li>
+          <li><a href="humour.html">Humour</a></li>
+          <li><a href="spectacle.html">Spectacle</a></li>
+          <li><a href="sport.html">Sport</a></li>
+          <li><a href="theatre.html">Theatre</a></li>
+          <li><a href="login.html">Connexion</a></li>
+          <li><a href="register.html">S'inscrire</a></li>
+          <li><a href="deconnexion.html">Deconnexion</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container my-5">
+      <h1>Humour</h1>
+      <div id="spectacles" class="row"></div>
+    </div>
 
-        <script>
-            //début de la communication avec le back
-            const container = document.getElementById("spectacles");
+    <script>
+      //début de la communication avec le back
+      const container = document.getElementById("spectacles");
 
-            //fonction assync ppur récupérer les spécactle
-            async function chargerSpectacles() {
-                try {
-                    //appel de l'api
-                    const response = await fetch(
-                        "http://localhost:3000/humour"
-                    );
-                    const spectacles = await response.json();
+      //fonction assync ppur récupérer les spécactle
+      async function chargerSpectacles() {
+        try {
+          //appel de l'api
+          const response = await fetch("http://localhost:3000/humour");
+          const spectacles = await response.json();
 
-                    //boucle foreach pour récupérer les spectacles humour
-                    spectacles.forEach((spectacle) => {
-                        //card bootstrap
-                        const card = document.createElement("div");
-                        card.className = "card col-md-4 mb-3";
+          //boucle foreach pour récupérer les spectacles humour
+          spectacles.forEach((spectacle) => {
+            //card bootstrap
+            const card = document.createElement("div");
+            card.className = "card col-md-4 mb-3";
 
-                        //body de la card
-                        const cardBody = document.createElement("div");
-                        cardBody.className = "card-body";
+            //body de la card
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
 
-                        //je vais construire le contenu de la card
-                        //titre
-                        const titre = document.createElement("h5");
-                        titre.textContent = spectacle.title; //j'insére le contenu avec textContent
-                        cardBody.appendChild(titre);
-                        //lieu
-                        const lieu = document.createElement("p");
-                        lieu.textContent = spectacle.place;
-                        cardBody.appendChild(lieu);
-                        //prix
-                        const prix = document.createElement("p");
-                        prix.textContent = spectacle.price + "€";
+            //je vais construire le contenu de la card
+            //titre
+            const titre = document.createElement("h5");
+            titre.textContent = spectacle.title; //j'insére le contenu avec textContent
+            cardBody.appendChild(titre);
+            //lieu
+            const lieu = document.createElement("p");
+            lieu.textContent = spectacle.place;
+            cardBody.appendChild(lieu);
+            //prix
+            const prix = document.createElement("p");
+            prix.textContent = spectacle.price + "€";
 
-                        //pour créer un bouton d'achat de billet à l'intérieur de chaque carte
-                        const button = document.createElement("button");
-                        button.textContent = "Acheter un billet";
-                        button.className = "btn btn-primary mt-2";
-                        button.addEventListener("click", () => {
-                            alert(
-                                `Félicitations ! Vous avez acheté un billet pour : ${spectacle.title}`
-                            );
-                        });
+            //pour créer un bouton d'achat de billet à l'intérieur de chaque carte
+            const button = document.createElement("button");
+            button.textContent = "Acheter un billet";
+            button.className = "btn btn-primary mt-2";
+            button.addEventListener("click", () => {
+              alert(
+                `Félicitations ! Vous avez acheté un billet pour : ${spectacle.title}`
+              );
+            });
 
-                        //et ne pas OUBLIER d'assembler avec appenchild
-                        card.appendChild(cardBody);
-                        container.appendChild(card);
-                        cardBody.appendChild(button);
-                    });
-                } catch (error) {
-                    container.textContent = "Erreur : " + error.message;
-                }
-            }
+            //et ne pas OUBLIER d'assembler avec appenchild
+            card.appendChild(cardBody);
+            container.appendChild(card);
+            cardBody.appendChild(button);
+          });
+        } catch (error) {
+          container.textContent = "Erreur : " + error.message;
+        }
+      }
 
-            //et j'appelle la function déclarée en haut
-            chargerSpectacles();
-        </script>
-        <footer class="footer">
-            <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
-        </footer>
-    </body>
+      //et j'appelle la function déclarée en haut
+      chargerSpectacles();
+
+      //pouir afficher le nom de l'utilisateur connecté
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        const li = document.createElement("li");
+        li.style.color = "white";
+        li.textContent = user.name;
+        document.querySelector("nav ul").appendChild(li);
+      }
+    </script>
+    <footer class="footer">
+      <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
+    </footer>
+  </body>
 </html>

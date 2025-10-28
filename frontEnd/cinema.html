@@ -19,7 +19,7 @@
           <li><a href="concert.html">Concert</a></li>
           <li><a href="festival.html">Festival</a></li>
           <li><a href="humour.html">Humours</a></li>
-          <li><a href="spectacles.html">Spectacle</a></li>
+          <li><a href="spectacle.html">Spectacle</a></li>
           <li><a href="sport.html">Sport</a></li>
           <li><a href="theatre.html">Theatre</a></li>
           <li><a href="connexion.html">Connexion</a></li>
@@ -106,6 +106,16 @@
 
       //et j'appelle la function déclarée en haut
       chargerSpectacles();
+
+      //pouir afficher le nom de l'utilisateur connecté
+
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user) {
+        const li = document.createElement("li");
+        li.style.color = "white";
+        li.textContent = user.name;
+        document.querySelector("nav ul").appendChild(li);
+      }
     </script>
     <footer class="footer">
       <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
