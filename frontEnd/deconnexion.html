@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Déconnexion - Billet Boom</title>
+  </head>
+  <body>
+    <h1>Déconnexion en cours...</h1>
+
+    <script>
+      //supprimer l'utilisateur du localStorage
+      localStorage.removeItem("user");
+
+      alert("Vous êtes déconnecté !");
+
+      //rediriger vers la page de connexion
+      window.location.href = "login.html";
+    </script>
+  </body>
+</html>
