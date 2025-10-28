@@ -27,8 +27,16 @@ export async function getAllFestivalController(req, res) {
 
 export async function addFestivalController(req, res) {
     try {
-        const { title, description, date, place, schedule, duration, price } =
-            req.body;
+        const {
+            title,
+            description,
+            date,
+            place,
+            schedule,
+            duration,
+            price,
+            quantity,
+        } = req.body;
         const newFestival = await addFestival(
             title,
             description,
@@ -36,7 +44,8 @@ export async function addFestivalController(req, res) {
             place,
             schedule,
             duration,
-            price
+            price,
+            quantity
         );
         return res.status(201).json({
             message: "Festival successfully create",

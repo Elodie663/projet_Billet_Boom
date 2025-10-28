@@ -18,12 +18,11 @@
                     <li><a href="concert.html">Concert</a></li>
                     <li><a href="festival.html">Festival</a></li>
                     <li><a href="humour.html">Humours</a></li>
-                    <li><a href="spectacles.html">Spectacle</a></li>
+                    <li><a href="spectacle.html">Spectacle</a></li>
                     <li><a href="sport.html">Sport</a></li>
                     <li><a href="theatre.html">Theatre</a></li>
-                    <li><a href="connexion.html">Connexion</a></li>
+                    <li><a href="login.html">Connexion</a></li>
                     <li><a href="register.html">S'inscrire</a></li>
-                    <li><a href="deconnexion.html">Deconnexion</a></li>
                 </ul>
             </nav>
         </header>
@@ -36,6 +35,8 @@
             <p>&copy; 2025 Billet Boom -- Tous droits réservés.</p>
         </footer>
         <script>
+            /* import { updateFestivalController } from "../controllers/festivalController";*/
+
             document.addEventListener("DOMContentLoaded", async () => {
                 console.log("ok");
 
@@ -74,15 +75,52 @@
                     price.textContent = `Prix : ${festival.price} €`;
                     festivalItem.appendChild(price);
 
+                    // quantity
+                    const quantity = document.createElement("p");
+                    quantity.textContent = `Nombre de billets disponibles : ${festival.quantity}`;
+                    festivalItem.appendChild(quantity);
+
                     // btn achat
                     const boutton = document.createElement("button");
                     boutton.textContent = "Acheter un billet";
-                    boutton.addEventListener("click", () => {
-                        alert(
-                            `Felicitation! Vous avez acheté un billet pour : ${festival.title} `
-                        );
+
+                    const input = document.createElement("input");
+                    input.type = "number";
+                    input.placeholder = `Combien de billets souhaitez-vous acheter ?`;
+                    const info = document.createElement("p");
+
+                    boutton.addEventListener("click", async () => {
+                        const piece = parseInt(input.value);
+                        const totalQuantity = festival.quantity;
+
+                        const restQuantity = totalQuantity - piece;
+
+                        const totalPrix = piece * festival.price;
+                        festival.quantity -= piece;
+                        quantity.textContent = ` Nombre de billets disponibles : ${festival.quantity}`;
+                        info.textContent = `Vous avez acheter ${piece} billet pour ${festival.title} - Total ${totalPrix} € `;
+                        try {
+                            await fetch(
+                                `http://localhost:3000/festival/${festival.id}`,
+                                {
+                                    method: "PUT",
+                                    headers: {
+                                        "Content-Type": "application/json",
+                                    },
+                                    body: JSON.stringify({
+                                        quantity: festival.quantity,
+                                    }),
+                                }
+                            );
+                        } catch (error) {
+                            console.log(error);
+                        }
                     });
+                    /* updateFestivalController(id, festival.quantity);*/
                     festivalItem.appendChild(boutton);
+                    festivalItem.appendChild(input);
+
+                    festivalItem.appendChild(info);
 
                     liste.appendChild(festivalItem); // on ajoute le festival à la liste <ul>
                 });

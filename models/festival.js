@@ -16,6 +16,8 @@ const festivalSchema = new Schema(
 
         duration: { type: String, required: true },
         price: { type: Number, required: true },
+
+        quantity: { type: Number },
     },
     { timestamps: true }
 );
@@ -34,7 +36,8 @@ export async function addFestival(
     place,
     schedule,
     duration,
-    price
+    price,
+    quantity
 ) {
     const newFestival = new Festival({
         title,
@@ -44,6 +47,7 @@ export async function addFestival(
         schedule,
         duration,
         price,
+        quantity,
     });
     return await newFestival.save();
 }
@@ -59,6 +63,7 @@ export async function findFestivalByTitle(title) {
 export async function deleteFestivalById(id) {
     return await Festival.findByIdAndDelete(id);
 }
+
 export async function findFestivalByIdAndUpdate(id, updateData) {
-    return await Festival.findByIdAndUpdate(id, updateData);
+    return await Festival.findByIdAndUpdate(id, updateData, { new: true });
 }
